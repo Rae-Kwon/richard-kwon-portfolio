@@ -1,7 +1,11 @@
-const Projects = () => {
-    return (
-        <section className="projects">
+import ProjectCard from './ProjectCard'
 
+const Projects = ({ projectsData }) => {
+    return (
+        <section className="project">
+            {projectsData.map((project, index) => {
+                return <ProjectCard key={index} project={project}/>
+            })}
         </section>
     )
 }
