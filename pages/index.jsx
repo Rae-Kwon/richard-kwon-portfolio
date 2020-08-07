@@ -1,10 +1,13 @@
 import Head from 'next/head'
+import Navbar from '../components/navbar'
 
 const Home = () => {
   return (
-    <main>
-      <h1>Hello</h1>
-    </main>
+    <>
+      <header>
+        <Navbar />
+      </header>
+    </>
   )
 }
 
