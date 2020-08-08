@@ -31,7 +31,6 @@ const Home = ({ data }) => {
   return (
     <>
       <header>
-        {console.log(data)}
         <Navbar />
         <Hero />
         <Projects projectsData={data}/>
