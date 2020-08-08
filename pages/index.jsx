@@ -13,21 +13,32 @@ export async function getStaticProps() {
     .collection('portfolio')
     .doc('projects')
     .get()
+
+  const querySkills = await db
+    .collection('portfolio')
+    .doc('skills')
+    .get()
   
   const projectData = await querySnapshot
   .data()  
   .projects
+
+  const skillsData = await querySkills
+    .data()
+    .skills
     
   const data = projectData.map(project => project)
+  const skills = skillsData.map(skills => skills)
 
   return {
     props: {
-      data
+      data,
+      skills
     }
   }
 }
 
-const Home = ({ data }) => {
+const Home = ({ data, skills }) => {
   return (
     <>
       <header>
