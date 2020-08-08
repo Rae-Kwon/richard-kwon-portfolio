@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Navbar from '../components/navbar'
 import Hero from '../components/hero'
 import Projects from '../components/projects'
+import Skills from '../components/skills'
 
 import { loadDB } from '../lib/firebase'
 
@@ -45,6 +46,7 @@ const Home = ({ projects, skills }) => {
         <Navbar />
         <Hero />
         <Projects projectsData={projects}/>
+        <Skills skillsData={skills} />
       </header>
     </>
   )
