@@ -9,7 +9,7 @@ import { loadDB } from '../lib/firebase'
 export async function getStaticProps() {
   const firebaseDb = await loadDB()
   const db = firebaseDb.firestore()
-  const querySnapshot = await db
+  const queryProjects = await db
     .collection('portfolio')
     .doc('projects')
     .get()
@@ -19,7 +19,7 @@ export async function getStaticProps() {
     .doc('skills')
     .get()
   
-  const projectData = await querySnapshot
+  const projectData = await queryProjects
   .data()  
   .projects
 
@@ -27,24 +27,24 @@ export async function getStaticProps() {
     .data()
     .skills
     
-  const data = projectData.map(project => project)
+  const projects = projectData.map(project => project)
   const skills = skillsData.map(skills => skills)
 
   return {
     props: {
-      data,
+      projects,
       skills
     }
   }
 }
 
-const Home = ({ data, skills }) => {
+const Home = ({ projects, skills }) => {
   return (
     <>
       <header>
         <Navbar />
         <Hero />
-        <Projects projectsData={data}/>
+        <Projects projectsData={projects}/>
       </header>
     </>
   )
