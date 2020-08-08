@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Navbar from '../components/navbar'
 import Hero from '../components/hero'
+import Projects from '../components/projects'
 
 import { loadDB } from '../lib/firebase'
+
 
 export async function getStaticProps() {
   const firebaseDb = await loadDB()
@@ -32,6 +34,7 @@ const Home = ({ data }) => {
         {console.log(data)}
         <Navbar />
         <Hero />
+        <Projects projectsData={data}/>
       </header>
     </>
   )
