@@ -1,53 +1,56 @@
-import Head from 'next/head'
-import Navbar from '../components/navbar'
-import Hero from '../components/hero'
-import Projects from '../components/projects'
-import Skills from '../components/index/skills'
+import Head from "next/head"
+import Link from "next/link"
+import Navbar from "../components/index/navbar"
+import Hero from "../components/index/hero"
+import Projects from "../components/index/projects"
+import Skills from "../components/index/skills"
 
-import { projectDatabase } from '../lib/firebase'
-
+import { projectDatabase } from "../lib/firebase"
 
 export async function getStaticProps() {
-  const queryProjects = await projectDatabase
-    .collection('portfolio')
-    .doc('projects')
-    .get()
+    const queryProjects = await projectDatabase
+        .collection("portfolio")
+        .doc("projects")
+        .get()
 
-  const querySkills = await projectDatabase
-    .collection('portfolio')
-    .doc('skills')
-    .get()
-  
-  const projectData = await queryProjects
-  .data()  
-  .projects
+    const querySkills = await projectDatabase
+        .collection("portfolio")
+        .doc("skills")
+        .get()
 
-  const skillsData = await querySkills
-    .data()
-    .skills
-    
-  const projects = projectData.map(project => project)
-  const skills = skillsData.map(skills => skills)
+    const projectData = await queryProjects.data().projects
 
-  return {
-    props: {
-      projects,
-      skills
+    const skillsData = await querySkills.data().skills
+
+    const projects = projectData.map((project) => project)
+    const skills = skillsData.map((skills) => skills)
+
+    return {
+        props: {
+            projects,
+            skills,
+        },
     }
-  }
 }
 
 const Home = ({ projects, skills }) => {
-  return (
-    <>
-      <header>
-        <Navbar />
-        <Hero />
-        <Projects projectsData={projects}/>
-        <Skills skillsData={skills} />
-      </header>
-    </>
-  )
+    return (
+        <>
+            <header>
+                <Navbar />
+            </header>
+            <main>
+                <Hero />
+                <Projects projectsData={projects} />
+                <Skills skillsData={skills} />
+            </main>
+            <footer>
+                <Link href="/admin">
+                    <a>Go to admin</a>
+                </Link>
+            </footer>
+        </>
+    )
 }
 
 export default Home
