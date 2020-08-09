@@ -7,6 +7,29 @@ import Skills from "../components/index/skills"
 
 import { projectDatabase } from "../lib/firebase"
 
+const Home = ({ projects, skills }) => {
+    return (
+        <>
+            <header>
+                <Navbar />
+            </header>
+            <main>
+                <Hero />
+                <Projects projectsData={projects} />
+                <Skills skillsData={skills} />
+            </main>
+            <footer>
+                <Link href="/admin">
+                    <a>Go to admin</a>
+                </Link>
+            </footer>
+        </>
+    )
+}
+
+export default Home
+
+
 export async function getStaticProps() {
     const queryProjects = await projectDatabase
         .collection("portfolio")
@@ -32,25 +55,3 @@ export async function getStaticProps() {
         },
     }
 }
-
-const Home = ({ projects, skills }) => {
-    return (
-        <>
-            <header>
-                <Navbar />
-            </header>
-            <main>
-                <Hero />
-                <Projects projectsData={projects} />
-                <Skills skillsData={skills} />
-            </main>
-            <footer>
-                <Link href="/admin">
-                    <a>Go to admin</a>
-                </Link>
-            </footer>
-        </>
-    )
-}
-
-export default Home
