@@ -27,9 +27,6 @@ const Home = ({ projects, skills }) => {
     )
 }
 
-export default Home
-
-
 export async function getStaticProps() {
     const queryProjects = await projectDatabase
         .collection("portfolio")
@@ -53,5 +50,8 @@ export async function getStaticProps() {
             projects,
             skills,
         },
+        unstable_revalidate: 1,
     }
 }
+
+export default Home
