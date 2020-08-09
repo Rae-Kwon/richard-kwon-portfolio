@@ -2,20 +2,18 @@ import Head from 'next/head'
 import Navbar from '../components/navbar'
 import Hero from '../components/hero'
 import Projects from '../components/projects'
-import Skills from '../components/skills'
+import Skills from '../components/index/skills'
 
-import { loadDB } from '../lib/firebase'
+import { projectDatabase } from '../lib/firebase'
 
 
 export async function getStaticProps() {
-  const firebaseDb = await loadDB()
-  const db = firebaseDb.firestore()
-  const queryProjects = await db
+  const queryProjects = await projectDatabase
     .collection('portfolio')
     .doc('projects')
     .get()
 
-  const querySkills = await db
+  const querySkills = await projectDatabase
     .collection('portfolio')
     .doc('skills')
     .get()
