@@ -1,18 +1,28 @@
+import * as firebase from 'firebase/app'
+import { useState } from "react"
+
+import TextInput from "./TextInput"
+import SubmitData from "./SubmitData"
+import { projectDatabase } from "../../../lib/firebase"
+
 const ProjectForm = () => {
+    const [projectData, setProjectData] = useState([])
+
     return (
         <form>
-            <label htmlFor="project-name">
+            {console.log(projectData)}
+            <TextInput labelName="name" setProjectData={setProjectData}>
                 Name:
-                <input type="text" name="project-name" id="project-name"/>
-            </label>
-            <label htmlFor="project-summary">
+            </TextInput>
+
+            <TextInput labelName="summary" setProjectData={setProjectData}>
                 Summary:
-                <input type="text" name="project-summary" id="project-summary"/>
-            </label>
-            <label htmlFor="project-description">
+            </TextInput>
+
+            <TextInput labelName="description" setProjectData={setProjectData}>
                 Description:
-                <input type="text" name="project-description" id="project-description"/>
-            </label>
+            </TextInput>
+            <SubmitData />
         </form>
     )
 }
