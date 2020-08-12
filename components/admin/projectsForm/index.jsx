@@ -1,28 +1,51 @@
-import * as firebase from 'firebase/app'
 import { useState } from "react"
 
-import TextInput from "./TextInput"
-import SubmitData from "./SubmitData"
 import { projectDatabase } from "../../../lib/firebase"
 
 const ProjectForm = () => {
-    const [projectData, setProjectData] = useState([])
+    const [projectData, setProjectData] = useState({
+        name: "",
+        summary: "",
+        description: ""
+    })
+
+    const inputHandler = (e) => {
+        const { name, value } = e.target
+        setProjectData(prevState => ({
+            ...prevState,
+            [name]: value
+        })
+        )
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await projectDatabase.collection('project').add(projectData)
+        setProjectData({
+            name: "",
+            summary: "",
+            description: ""
+        })
+    }
 
     return (
-        <form>
-            {console.log(projectData)}
-            <TextInput labelName="name" setProjectData={setProjectData}>
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="name">
                 Name:
-            </TextInput>
+                <input type="text" name="name" id="name" value={projectData.name} onChange={inputHandler} />
+            </label>
 
-            <TextInput labelName="summary" setProjectData={setProjectData}>
+            <label htmlFor="summary">
                 Summary:
-            </TextInput>
+                <input type="text" name="summary" id="summary" value={projectData.summary} onChange={inputHandler} />
+            </label>
 
-            <TextInput labelName="description" setProjectData={setProjectData}>
+            <label htmlFor="description">
                 Description:
-            </TextInput>
-            <SubmitData />
+                <input type="text" name="description" id="description" value={projectData.description} onChange={inputHandler} />
+            </label>
+
+            <input type="submit" value="Send to Firebase"/>
         </form>
     )
 }
