@@ -48,13 +48,6 @@ export async function getStaticProps() {
         skills.push(docs.data())
     })
 
-    // const projectData = await queryProjects.data()
-
-    // const skillsData = await querySkills.data()
-
-    // const projects = projectData.map((project) => project)
-    // const skills = skillsData.map((skills) => skills)
-
     return {
         props: {
             projects,
