@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ProjectForm from '../components/admin/projectsForm'
 
 const Admin = () => {
     return (
@@ -7,6 +8,7 @@ const Admin = () => {
                 <a>Go back</a>
             </Link>
             <h1>This is the admin page</h1>
+            <ProjectForm />
         </div>
     )
 }
