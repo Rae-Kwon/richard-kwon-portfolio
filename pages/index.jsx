@@ -28,22 +28,32 @@ const Home = ({ projects, skills }) => {
 }
 
 export async function getStaticProps() {
+    const projects = []
+    
+    const skills = []
+
     const queryProjects = await projectDatabase
-        .collection("portfolio")
-        .doc("projects")
+        .collection("projects")
         .get()
 
     const querySkills = await projectDatabase
-        .collection("portfolio")
-        .doc("skills")
+        .collection("skills")
         .get()
 
-    const projectData = await queryProjects.data().projects
+    queryProjects.forEach(docs => {
+        projects.push(docs.data())
+    })
 
-    const skillsData = await querySkills.data().skills
+    querySkills.forEach(docs => {
+        skills.push(docs.data())
+    })
 
-    const projects = projectData.map((project) => project)
-    const skills = skillsData.map((skills) => skills)
+    // const projectData = await queryProjects.data()
+
+    // const skillsData = await querySkills.data()
+
+    // const projects = projectData.map((project) => project)
+    // const skills = skillsData.map((skills) => skills)
 
     return {
         props: {
