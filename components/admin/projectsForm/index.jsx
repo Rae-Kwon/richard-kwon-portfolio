@@ -20,7 +20,7 @@ const ProjectForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await projectDatabase.collection('project').add(projectData)
+        await projectDatabase.collection('projects').add(projectData)
         setProjectData({
             name: "",
             summary: "",
