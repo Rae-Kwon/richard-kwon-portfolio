@@ -1,8 +1,11 @@
 import Link from 'next/link'
+import { projectDatabase } from '../lib/firebase'
+
 import ProjectForm from '../components/admin/projectsForm'
 import SkillsForm from '../components/admin/skillsForm'
+import Projects from '../components/admin/projects'
 
-const Admin = () => {
+const Admin = ({ projects, skills }) => {
     return (
         <div>
             <Link href="/">
@@ -11,6 +14,7 @@ const Admin = () => {
             <h1>This is the admin page</h1>
             <ProjectForm />
             <SkillsForm />
+            <Projects projectsData={projects} />
         </div>
     )
 }
