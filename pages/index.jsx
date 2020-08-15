@@ -29,7 +29,6 @@ const Home = ({ projects, skills }) => {
 
 export async function getStaticProps() {
     const projects = []
-    
     const skills = []
 
     const queryProjects = await projectDatabase
@@ -41,11 +40,11 @@ export async function getStaticProps() {
         .get()
 
     queryProjects.forEach(docs => {
-        projects.push(docs.data())
+        projects.push({...docs.data(), id: docs.id})
     })
 
     querySkills.forEach(docs => {
-        skills.push(docs.data())
+        skills.push({...docs.data(), id: docs.id})
     })
 
     return {
