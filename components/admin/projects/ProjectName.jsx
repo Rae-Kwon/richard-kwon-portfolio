@@ -13,7 +13,7 @@ const ProjectName = ({ project }) => {
             <h3>Project Name:</h3>
             <p>{project.name}</p>
             {edit ? (
-                <UpdateProject edit={edit} editHandler={editHandler} />
+                <UpdateProject edit={edit} setEdit={setEdit} editHandler={editHandler} projectId={project.id} />
             ) : (
                 <button onClick={editHandler}>Edit</button>
             )}
