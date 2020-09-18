@@ -1,9 +1,20 @@
-const ProjectSummary = ({ project }) => {
+import UpdateProject from '../updateProject'
+
+const ProjectSummary = ({ project, edit, setEdit, editHandler }) => {
     return (
         <div>
             <h3>Project Summary:</h3>
-            <p>{project.summary}</p>
-            <button>Edit</button>
+            {edit ? (
+                <UpdateProject
+                    edit={edit}
+                    setEdit={setEdit}
+                    editHandler={editHandler}
+                    projectId={project.id}
+                    section={"summary"}
+                />
+            ) : (
+                <p>{project.summary}</p>
+            )}
         </div>
     )
 }

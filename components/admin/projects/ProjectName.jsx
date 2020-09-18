@@ -1,21 +1,21 @@
 import { useState } from "react"
 import UpdateProject from "../updateProject"
 
-const ProjectName = ({ project }) => {
-    const [edit, setEdit] = useState(false)
-
-    const editHandler = () => {
-        setEdit(!edit)
-    }
+const ProjectName = ({ project, edit, setEdit, editHandler }) => {
 
     return (
         <div>
             <h3>Project Name:</h3>
-            <p>{project.name}</p>
             {edit ? (
-                <UpdateProject edit={edit} setEdit={setEdit} editHandler={editHandler} projectId={project.id} />
+                <UpdateProject
+                    edit={edit}
+                    setEdit={setEdit}
+                    editHandler={editHandler}
+                    projectId={project.id}
+                    section={"name"}
+                />
             ) : (
-                <button onClick={editHandler}>Edit</button>
+                <p>{project.name}</p>
             )}
         </div>
     )
