@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Project from "./Project"
+import DeleteProject from '../deleteProject'
 
 const ProjectList = ({ project }) => {
     const [edit, setEdit] = useState(false)
@@ -19,7 +20,10 @@ const ProjectList = ({ project }) => {
             {edit ? (
                 <button onClick={editHandler}>Back</button>
             ) : (
-                <button onClick={editHandler}>Edit</button>
+                <>
+                    <button onClick={editHandler}>Edit</button>
+                    <DeleteProject project={project} />
+                </>
             )}
         </div>
     )
