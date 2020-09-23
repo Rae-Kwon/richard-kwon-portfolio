@@ -14,8 +14,7 @@ const ProjectForm = () => {
         setProjectData(prevState => ({
             ...prevState,
             [name]: value
-        })
-        )
+        }))
     }
 
     const handleSubmit = async (e) => {
