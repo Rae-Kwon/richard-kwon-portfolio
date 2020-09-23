@@ -1,9 +1,5 @@
 import { useState } from "react"
-import ProjectName from "./ProjectName"
-import ProjectId from "./ProjectId"
-import ProjectDescription from "./ProjectDescription"
-import ProjectSummary from "./ProjectSummary"
-import UpdateProject from "../updateProject"
+import Project from "./Project"
 
 const ProjectList = ({ project }) => {
     const [edit, setEdit] = useState(false)
@@ -14,40 +10,14 @@ const ProjectList = ({ project }) => {
 
     return (
         <div>
-            <ProjectName
-                project={project}
-                edit={edit}
-                setEdit={setEdit}
-                editHandler={editHandler}
-            />
-            <ProjectId
-                project={project}
-                edit={edit}
-                setEdit={setEdit}
-                editHandler={editHandler}
-            />
-            <ProjectDescription
-                project={project}
-                edit={edit}
-                setEdit={setEdit}
-                editHandler={editHandler}
-            />
-            <ProjectSummary
+            <Project 
                 project={project}
                 edit={edit}
                 setEdit={setEdit}
                 editHandler={editHandler}
             />
             {edit ? (
-                <>
-                    <UpdateProject
-                        edit={edit}
-                        setEdit={setEdit}
-                        editHandler={editHandler}
-                        projectId={project.id}
-                    />
-                    <button onClick={editHandler}>Back</button>
-                </>
+                <button onClick={editHandler}>Back</button>
             ) : (
                 <button onClick={editHandler}>Edit</button>
             )}
