@@ -6,6 +6,7 @@ import { projectDatabase } from '../lib/firebase'
 import ProjectForm from '../components/admin/projectsForm'
 import SkillsForm from '../components/admin/skillsForm'
 import Projects from '../components/admin/projects'
+import Skills from '../components/admin/skills'
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -29,6 +30,7 @@ const Admin = () => {
                 <ProjectForm />
                 <SkillsForm />
                 <Projects />
+                <Skills />
             </div>
         </FuegoProvider>
     )
