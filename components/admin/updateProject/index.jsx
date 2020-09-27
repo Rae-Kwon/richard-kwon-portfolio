@@ -18,7 +18,6 @@ const UpdateProject = ({ project, edit, setEdit, editHandler, projectId, section
 
     const submitEditHandler = async (e) => {
         e.preventDefault()
-        console.log(project.name, project.description, project.summary)
         await projectDatabase.collection("projects").doc(projectId).update({
             name: projectData.name,
             summary: projectData.summary,

@@ -5,11 +5,10 @@ const Projects = () => {
     const { data, update, error } = useCollection('projects', { listen: true })
     
     if (error) return <p>Error!</p>
-    if(!data) return <p>Loading...</p>
+    if (!data) return <p>Loading...</p>
     return (
         <div>
             {data.map((project, index) => {
-                (console.log(project))
                 return <ProjectList key={index} project={project} />
             })}
         </div>
