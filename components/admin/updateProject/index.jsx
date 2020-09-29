@@ -1,33 +1,43 @@
-import { useState } from "react"
+import { useFormInput } from "../../../hooks/customHooks"
 import { projectDatabase } from "../../../lib/firebase"
 
-const UpdateProject = ({ project, edit, setEdit, editHandler, projectId, section }) => {
-    const [projectData, setProjectData] = useState({
-        name: project.name,
-        summary: project.summary,
-        description: project.description
-    })
-
-    const editNameHandler = (e) => {
-        const { name, value } = e.target
-        setProjectData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }))
-    }
+const UpdateProject = ({
+    edit,
+    setEdit,
+    editHandler,
+    projectId,
+}) => {
+    const {
+        data: name,
+        bind: bindName,
+        reset: resetName,
+    } = useFormInput("")
+    const {
+        data: summary,
+        bind: bindSummary,
+        reset: resetSummary,
+    } = useFormInput("")
+    const {
+        data: description,
+        bind: bindDescription,
+        reset: resetDescription,
+    } = useFormInput("")
 
     const submitEditHandler = async (e) => {
         e.preventDefault()
-        await projectDatabase.collection("projects").doc(projectId).update({
-            name: projectData.name,
-            summary: projectData.summary,
-            description: projectData.description
-        })
-        setProjectData({
-            name: "",
-            summary: "",
-            description: ""
-        })
+        await projectDatabase
+            .collection("projects")
+            .doc(projectId)
+            .update({
+                name,
+                summary,
+                description,
+            })
+
+        resetName()
+        resetSummary()
+        resetDescription()
+
         setEdit(!edit)
     }
 
@@ -40,7 +50,7 @@ const UpdateProject = ({ project, edit, setEdit, editHandler, projectId, section
                         <input
                             name="name"
                             type="text"
-                            onChange={editNameHandler}
+                            {...bindName}
                         />
                     </label>
 
@@ -49,7 +59,7 @@ const UpdateProject = ({ project, edit, setEdit, editHandler, projectId, section
                         <input
                             name="summary"
                             type="text"
-                            onChange={editNameHandler}
+                            {...bindSummary}
                         />
                     </label>
 
@@ -58,10 +68,13 @@ const UpdateProject = ({ project, edit, setEdit, editHandler, projectId, section
                         <input
                             name="description"
                             type="text"
-                            onChange={editNameHandler}
+                            {...bindDescription}
                         />
                     </label>
-                    <input type="submit" value="Edit this" />
+                    <input
+                        type="submit"
+                        value="Edit this"
+                    />
                 </form>
             </div>
         )
