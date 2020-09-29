@@ -2,7 +2,6 @@ import { useFormInput } from "../../../hooks/customHooks"
 import { projectDatabase } from "../../../lib/firebase"
 
 const UpdateProject = ({
-    project,
     edit,
     setEdit,
     editHandler,
