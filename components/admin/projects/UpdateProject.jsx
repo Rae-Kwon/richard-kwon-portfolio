@@ -2,6 +2,7 @@ import { useFormInput } from "../../../hooks/customHooks"
 import { projectDatabase } from "../../../lib/firebase"
 
 const UpdateProject = ({
+    project,
     edit,
     setEdit,
     editHandler,
@@ -11,17 +12,17 @@ const UpdateProject = ({
         data: name,
         bind: bindName,
         reset: resetName,
-    } = useFormInput("")
+    } = useFormInput(project.name)
     const {
         data: summary,
         bind: bindSummary,
         reset: resetSummary,
-    } = useFormInput("")
+    } = useFormInput(project.summary)
     const {
         data: description,
         bind: bindDescription,
         reset: resetDescription,
-    } = useFormInput("")
+    } = useFormInput(project.description)
 
     const submitEditHandler = async (e) => {
         e.preventDefault()
@@ -50,6 +51,7 @@ const UpdateProject = ({
                         <input
                             name="name"
                             type="text"
+                            value={name}
                             {...bindName}
                         />
                     </label>
@@ -59,6 +61,7 @@ const UpdateProject = ({
                         <input
                             name="summary"
                             type="text"
+                            value={summary}
                             {...bindSummary}
                         />
                     </label>
@@ -68,6 +71,7 @@ const UpdateProject = ({
                         <input
                             name="description"
                             type="text"
+                            value={description}
                             {...bindDescription}
                         />
                     </label>
