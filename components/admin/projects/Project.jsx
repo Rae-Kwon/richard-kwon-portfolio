@@ -1,11 +1,15 @@
-import { useState } from "react"
-import UpdateProject from "../updateProject"
+import projects from './styles.module.scss'
 
-const Project = ({ project, edit, setEdit, editHandler }) => {
+import UpdateProject from "./UpdateProject"
+
+const Project = ({
+    project,
+    edit,
+    setEdit,
+    editHandler,
+}) => {
     return (
-        <div>
-            <h3>{project.name}</h3>
-            <p>{project.id}</p>
+        <>
             {edit ? (
                 <UpdateProject
                     project={project}
@@ -16,12 +20,15 @@ const Project = ({ project, edit, setEdit, editHandler }) => {
                     section={"name"}
                 />
             ) : (
-                <>
-                    <p>{project.summary}</p>
-                    <p>{project.description}</p>
-                </>
+                <div className={projects.content}>
+                    <h3 className={projects.name}>{project.name}</h3>
+                    <h4>Summary:</h4>
+                    <p className={projects.summary}>{project.summary}</p>
+                    <h4>Description:</h4>
+                    <p className={projects.description}>{project.description}</p>
+                </div>
             )}
-        </div>
+        </>
     )
 }
 

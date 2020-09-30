@@ -26,6 +26,7 @@ const UpdateProject = ({
 
     const submitEditHandler = async (e) => {
         e.preventDefault()
+        console.log(description)
         await projectDatabase
             .collection("projects")
             .doc(projectId)
@@ -47,7 +48,7 @@ const UpdateProject = ({
             <div>
                 <form onSubmit={submitEditHandler}>
                     <label htmlFor="name">
-                        Project Name:
+                        <h3>Name:</h3>
                         <input
                             name="name"
                             type="text"
@@ -57,8 +58,8 @@ const UpdateProject = ({
                     </label>
 
                     <label htmlFor="summary">
-                        Project Summary:
-                        <input
+                        <h4>Summary:</h4>
+                        <textarea
                             name="summary"
                             type="text"
                             value={summary}
@@ -67,8 +68,8 @@ const UpdateProject = ({
                     </label>
 
                     <label htmlFor="description">
-                        Project Description:
-                        <input
+                        <h4>Description:</h4>
+                        <textarea
                             name="description"
                             type="text"
                             value={description}

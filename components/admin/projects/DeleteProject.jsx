@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import projects from './styles.module.scss'
+
 import { projectDatabase } from '../../../lib/firebase'
 
 const DeleteProject = ({ project }) => {
@@ -22,7 +24,7 @@ const DeleteProject = ({ project }) => {
                     <button onClick={deleteProjectHandler}>Yes</button>
                     <button onClick={checkDeleteHandler}>No</button>
                 </div> :
-                <button onClick={checkDeleteHandler}>Delete</button>
+                <button className={projects.button} onClick={checkDeleteHandler}>Delete</button>
             }
         </>
     )
