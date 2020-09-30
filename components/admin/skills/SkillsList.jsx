@@ -1,5 +1,5 @@
 import React from 'react'
-import DeleteSkill from '../deleteSkill'
+import DeleteSkill from './DeleteSkill'
 import Skill from './Skill'
 
 const SkillsList = ({ skill }) => {
