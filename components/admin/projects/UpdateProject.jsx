@@ -1,3 +1,5 @@
+import projects from './styles.module.scss'
+
 import { useFormInput } from "../../../hooks/customHooks"
 import { projectDatabase } from "../../../lib/firebase"
 
@@ -45,21 +47,24 @@ const UpdateProject = ({
 
     if (edit) {
         return (
-            <div>
+            <div className={projects.content}>
                 <form onSubmit={submitEditHandler}>
                     <label htmlFor="name">
-                        <h3>Name:</h3>
-                        <input
-                            name="name"
-                            type="text"
-                            value={name}
-                            {...bindName}
-                        />
+                        <div className={projects.editName}>
+                            <input
+                                className={projects.nameInput}
+                                name="name"
+                                type="text"
+                                value={name}
+                                {...bindName}
+                            />
+                        </div>
                     </label>
 
                     <label htmlFor="summary">
                         <h4>Summary:</h4>
                         <textarea
+                            className={projects.editSummary}
                             name="summary"
                             type="text"
                             value={summary}
@@ -70,6 +75,7 @@ const UpdateProject = ({
                     <label htmlFor="description">
                         <h4>Description:</h4>
                         <textarea
+                            className={projects.editDescription}
                             name="description"
                             type="text"
                             value={description}
@@ -80,11 +86,10 @@ const UpdateProject = ({
                         type="submit"
                         value="Edit this"
                     />
+                    <button onClick={editHandler}>Back</button>
                 </form>
             </div>
         )
-    } else {
-        return <button onClick={editHandler}></button>
     }
 }
 

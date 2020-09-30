@@ -8,6 +8,7 @@ const Skills = () => {
     if (!data) return <p>Loading...</p>
     return (
         <div>
+            <h2>Skills</h2>
             {data.map((skill, index) => {
                 return <SkillsList key={index} skill={skill} />
             })}

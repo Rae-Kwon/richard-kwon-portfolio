@@ -19,14 +19,18 @@ const ProjectList = ({ project }) => {
                 setEdit={setEdit}
                 editHandler={editHandler}
             />
-            {edit ? (
-                <button onClick={editHandler}>Back</button>
-            ) : (
+            {!edit && (
+                // <button onClick={editHandler}>Back</button>
                 <div className={projects.buttons}>
                     <button className={projects.button} onClick={editHandler}>Edit</button>
                     <DeleteProject project={project} />
                 </div>
-            )}
+            )
+                // <div className={projects.buttons}>
+                //     <button className={projects.button} onClick={editHandler}>Edit</button>
+                //     <DeleteProject project={project} />
+                // </div>
+            }
         </div>
     )
 }
