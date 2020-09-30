@@ -14,7 +14,7 @@ const DeleteProject = ({ project }) => {
     }
     
     return (
-        <div>
+        <>
             {
                 checkDelete ?
                 <div>
@@ -24,7 +24,7 @@ const DeleteProject = ({ project }) => {
                 </div> :
                 <button onClick={checkDeleteHandler}>Delete</button>
             }
-        </div>
+        </>
     )
 }
 
