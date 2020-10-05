@@ -82,11 +82,13 @@ const UpdateProject = ({
                             {...bindDescription}
                         />
                     </label>
-                    <input
-                        type="submit"
-                        value="Edit this"
-                    />
-                    <button onClick={editHandler}>Back</button>
+                    <div className={projects.buttons}>
+                        <button
+                            className={projects.button}
+                            type="submit"
+                        >Edit this</button>
+                        <button className={projects.button} onClick={editHandler}>Back</button>
+                    </div>
                 </form>
             </div>
         )
