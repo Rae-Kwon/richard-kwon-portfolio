@@ -18,9 +18,9 @@ const Admin = () => {
                     <a>Go back</a>
                 </Link>
                 <h1>This is the admin page</h1>
-                <ProjectForm />
                 <SkillsForm />
                 <Projects />
+                <ProjectForm />
                 <Skills />
             </div>
         </FuegoProvider>
